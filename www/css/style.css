@@ -25,9 +25,10 @@ body {
     position: relative;
     overflow: auto;
     margin: auto;
-    top: 23px;
+    /*top: 23px;*/
     border: 2px solid #BBB;
     border-radius: 2px;
+    margin: 20px;
 }
 
 /* Grid cell base style */
@@ -39,13 +40,15 @@ body {
     float: left;
     padding: 1.5vmin 0;
     text-align: center;
-    font-size: 4vmin;
+    /*font-size: 4vmin;*/
     color: #666;
+    /*overflow: hidden;*/
+    box-sizing: border-box;
 }
 
 .game-cell-digit {
-        transition: opacity 2s ease;
-
+    transition: opacity 2s ease;
+    line-height: 1px;
 }
 
 .game-cell .new-value {
@@ -63,20 +66,21 @@ body {
     border-left: none;
 }
 
-/* Middle horizontal thick lines */
-.game-cell:nth-child(n+28):nth-child(-n+36),
-.game-cell:nth-child(n+55):nth-child(-n+63) {
-    border-top: 2px solid #BBB;
-}
-
-/* Middle vertical thicker lines */
-.game-cell:nth-child(3n+3) {
-    border-right: 2px solid #BBB;
-}
-
 /* Cells in last column */
 .game-cell:nth-child(9n+9) {
     border-right: none;
+}
+
+/* Middle horizontal thick lines */
+.game-cell:nth-child(n+19):nth-child(-n+27),
+.game-cell:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 2px solid #BBB;
+}
+
+/* Middle vertical thick lines */
+.game-cell:nth-child(9n + 4),
+.game-cell:nth-child(9n + 7) {
+    border-left:  2px solid #BBB;
 }
 
 /* Container for the solve button */
@@ -92,5 +96,5 @@ body {
     margin: 23px;
     min-width: 150px;
     left: 0;
-    bottom: 20px;
+    bottom: 0;
 }
