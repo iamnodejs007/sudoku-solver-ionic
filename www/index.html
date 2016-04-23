@@ -14,28 +14,31 @@
 <body ng-app="SudokuSolver" ng-controller="SudokuController">
 
   <ion-pane>
-    
-    <ion-header-bar class="bar-stable">
+
+    <ion-header-bar class="bar-positive">
       <h1 class="title">Sudoku Solver</h1>
     </ion-header-bar>
-    
-    <div style="padding-top: 65px">
+
+    <ion-content scroll="false">
 
       <!-- Sudoku board -->
-      <div class="game" my-directive>
-        <div class="game-cell" ng-repeat="d in puzzle">
-          {{d}}
+      <div class="game" my-directive="">
+        <div class="game-cell" ng-repeat="d in puzzle track by $index">
+          <span class="game-cell-digit" ng-style="{&apos;opacity&apos;: d &gt; 0 ? 1 : 0}" ng-class="{&apos;new-value&apos;: d !== originalPuzzle[$index]}">
+            {{d}} 
+          </span>
         </div>
       </div>
-      
+
       <!-- Solve button -->
       <div class="solve-button-container">
-        <div class="button button-positive solve-button">
+        <div class="button button-positive solve-button" ng-click="solve()">
           Solve
         </div>
       </div>
 
-    </div>
+    </ion-content>
+
   </ion-pane>
 
   <!-- Ionic/AngularJS -->
@@ -46,8 +49,11 @@
 
   <!-- App code -->
   <script src="app/sudoku.module.js"></script>
+  <script src="app/puzzle.constant.js"></script>
+  <script src="app/iterators.constant.js"></script>
+  <script src="app/sudoku.service.js"></script>
   <script src="app/sudoku.directive.js"></script>
-  <script src="app/sudoku.ctrl.js"></script>
+  <script src="app/sudoku.controller.js"></script>
 </body>
 
 </html>
