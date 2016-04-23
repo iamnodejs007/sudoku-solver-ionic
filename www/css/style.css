@@ -25,8 +25,7 @@ body {
     position: relative;
     overflow: auto;
     margin: auto;
-    /*top: 23px;*/
-    border: 2px solid #BBB;
+    border: 2px solid #AAA;
     border-radius: 2px;
     margin: 20px;
 }
@@ -40,14 +39,12 @@ body {
     float: left;
     padding: 1.5vmin 0;
     text-align: center;
-    /*font-size: 4vmin;*/
     color: #666;
-    /*overflow: hidden;*/
     box-sizing: border-box;
 }
 
 .game-cell-digit {
-    transition: opacity 2s ease;
+    transition: opacity 1s ease;
     line-height: 1px;
 }
 
@@ -74,13 +71,13 @@ body {
 /* Middle horizontal thick lines */
 .game-cell:nth-child(n+19):nth-child(-n+27),
 .game-cell:nth-child(n+46):nth-child(-n+54) {
-    border-bottom: 2px solid #BBB;
+    border-bottom: 2px solid #AAA;
 }
 
 /* Middle vertical thick lines */
 .game-cell:nth-child(9n + 4),
 .game-cell:nth-child(9n + 7) {
-    border-left:  2px solid #BBB;
+    border-left:  2px solid #AAA;
 }
 
 /* Container for the solve button */

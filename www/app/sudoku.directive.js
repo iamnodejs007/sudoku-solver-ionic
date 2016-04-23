@@ -4,10 +4,14 @@ angular.module('SudokuSolver')
             return {
                 templateUrl: 'app/sudoku.html',
                 controllerAs: 'vm',
-                bindToController: {
+                scope: {
                     puzzle: '='
                 },
-                controller: [function () {
+                controller: ['$scope', function ($scope) {
+                    $scope.$watch('puzzle', function(){
+                    $scope.originalPuzzle = angular.copy($scope.puzzle);
+                        
+                    });
 
                 }],
                 link: function (s, e, a) {
