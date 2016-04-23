@@ -1,1 +1,71 @@
-/* Empty. Add your own CSS if you like */
+html,
+body {
+  height: 100%;
+}
+
+.content {
+  position: relative;
+  height: 100%;
+}
+
+.game {
+  position: relative;
+  overflow: auto;
+  margin: auto;
+  top: 23px;
+  border: 2px solid #BBB;
+  border-radius: 2px;
+}
+
+/* Grid cell base style */
+.game-cell {
+  width: 11.1111111%;
+  height: 11.1111111%;
+  border-left: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  float: left;
+  padding: 1.5vmin 0;
+  text-align: center;
+  font-size: 4vmin;
+  color: #666;
+}
+
+/* Cells in last row */
+.game-cell:nth-child(n+73) {
+  border-bottom: none;
+}
+
+/* Cells in first column */
+.game-cell:nth-child(9n+1) {
+  border-left: none;
+}
+
+/* Middle horizontal thick lines */
+.game-cell:nth-child(n+28):nth-child(-n+36),
+.game-cell:nth-child(n+55):nth-child(-n+63) {
+  border-top: 2px solid #BBB;
+}
+
+/* Middle vertical thicker lines */
+.game-cell:nth-child(3n+3) {
+  border-right: 2px solid #BBB;
+}
+
+/* Cells in last column */
+.game-cell:nth-child(9n+9) {
+  border-right: none;
+}
+
+.solve-button-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.solve-button {
+  margin: 23px;
+  min-width: 150px;
+  left: 0;
+  bottom: 20px;
+}
