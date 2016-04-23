@@ -1,11 +1,13 @@
 angular.module('SudokuSolver')
-    .service('SudokuService', ['PuzzleConstant', 'IteratorsConstant',
-        function (puzzle, iterators) {
+    .service('SudokuService', ['IteratorsConstant',
+        function (iterators) {
+
+            var _this = this;
 
             /**
              * Debug flag to toggle additional logging
              */
-            var debug = true;
+            var debug = false;
 
             /**
              * Counter to track levels of recursion
@@ -16,7 +18,7 @@ angular.module('SudokuSolver')
              * Expose the puzzle structure to the outside world
              * Can be used for binding the controller
              */
-            this.puzzle = puzzle;
+            this.puzzle = null;
 
             /**
              * Eliminate any value candidates from the current cell if:
@@ -36,7 +38,7 @@ angular.module('SudokuSolver')
                 var candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
                 var eliminationFunc = function (globalIndex) {
-                    var val = puzzle[globalIndex];
+                    var val = _this.puzzle[globalIndex];
                     if (val && candidates.indexOf(val) > -1) {
                         candidates.splice(candidates.indexOf(val), 1);
                     }
@@ -59,7 +61,7 @@ angular.module('SudokuSolver')
             function getIndexOfNextEmptyGridCell(startingGridIndex) {
                 // Start at +1 so we don't iterate over the previous cell
                 for (var gridIndex = startingGridIndex + 1; gridIndex < 81; gridIndex++) {
-                    if (puzzle[gridIndex] === 0) {
+                    if (_this.puzzle[gridIndex] === 0) {
                         return gridIndex;
                     }
                 }
@@ -94,11 +96,11 @@ angular.module('SudokuSolver')
                 var str = '';
                 var j = 0;
 
-                for (var i = 0; i < puzzle.length; i++) {
+                for (var i = 0; i < _this.puzzle.length; i++) {
                     if (j != 0 && j % 3 == 0) {
                         str += ' | '
                     }
-                    str += ' ' + (puzzle[i] ? puzzle[i] : ' ') + ' ';
+                    str += ' ' + (_this.puzzle[i] ? _this.puzzle[i] : ' ') + ' ';
                     if (i == 27 || i == 54) {
                         console.log('----------+-----------+----------')
                     }
@@ -113,6 +115,15 @@ angular.module('SudokuSolver')
             }
 
             /**
+             * Initialize the solver with a puzzle.
+             * @param {int[]} puzzle - An array of 81 integers representing a sudoku puzzle.
+             *                         `0` represents an empty or unsolved cell
+             */
+            this.initialize = function (puzzle) {
+                _this.puzzle = puzzle;
+            };
+
+            /**
              * Solve the puzzle
              *  - narrows down any possible candidates for empty cells
              *  - attempts each candidate until puzzle can be solved further
@@ -122,6 +133,11 @@ angular.module('SudokuSolver')
              * @param {int} colIndex - Column index to start solving at
              */
             this.solve = function (gridIndex) {
+
+                // Check if initialized
+                if (!_this.puzzle) {
+                    throw 'Please call initialize(...) with the puzzle data before solving.';
+                }
 
                 if (debug) level++;
 
@@ -141,7 +157,7 @@ angular.module('SudokuSolver')
                 for (var i = 0; i < candidates.length; i++) {
 
                     // Insert a candidate into the empty cell
-                    puzzle[nextEmptyGridIndex] = candidates[i];
+                    _this.puzzle[nextEmptyGridIndex] = candidates[i];
 
                     // Debug
                     if (debug) {
@@ -158,12 +174,12 @@ angular.module('SudokuSolver')
 
                     // Debug
                     if (debug) {
-                        console.log('Undo candidate', puzzle[nextEmptyGridIndex],
+                        console.log('Undo candidate', _this.puzzle[nextEmptyGridIndex],
                             '- Grid index', gridIndex, '- Level', localLevel)
                     }
 
                     // Solve didn't work... undo the values we've tried                    
-                    puzzle[nextEmptyGridIndex] = 0;
+                    _this.puzzle[nextEmptyGridIndex] = 0;
                 }
 
                 // Returning false outside the loop will backtrack
