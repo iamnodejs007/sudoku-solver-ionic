@@ -19,6 +19,12 @@ body {
     height: 100%;
 }
 
+/* Wraps the game board */
+.game-container{
+    text-align: center;
+    overflow: visible;
+}
+
 /* Game grid wrapper */
 .game {
     background: #FFF;
@@ -27,17 +33,16 @@ body {
     margin: auto;
     border: 2px solid #AAA;
     border-radius: 2px;
-    margin: 20px;
 }
 
 /* Grid cell base style */
 .game-cell {
     width: 11.1111111%;
-    height: 11.1111111%;
+    height: 11.2111111%;
     border-left: 1px solid #DDD;
     border-bottom: 1px solid #DDD;
     float: left;
-    padding: 1.5vmin 0;
+    padding: 1.8vmin 0;
     text-align: center;
     color: #666;
     box-sizing: border-box;

@@ -1,20 +1,36 @@
 angular.module('SudokuSolver')
-    .directive('autoSize', function () {
+    .directive('autoSize', ['$window', function ($window) {
         return {
             link: function (s, e, a) {
-                // Resize the element to fit within the window with a 1:1 aspect ratio.
-                // TODO - Vertically center with offeset for the solve button
-                // resize = function () {
-                //     var size = ($window.innerHeight > $window.innerWidth)
-                //         ? $window.innerWidth - 50
-                //         : $window.innerHeight - 230;
-                //     a.$set('style', 'width: ' + size + 'px; height: ' + size + 'px;');
-                // }
 
-                // resize();
-                // angular.element($window).bind('resize', function () {
-                //     resize();
-                // });
+                var offsetForSolveButton = 200;
+                var elementMargin = 40;
+
+                /**
+                 * Resize the element to fit within the window with a 1:1 aspect ratio.
+                 */
+                var resize = function () {
+
+                    // Determine size first based on height.
+                    // If width is truncated, make the innerWidth the limiting factor.
+                    var size = $window.innerHeight - offsetForSolveButton;
+                    if ($window.innerWidth < (size + elementMargin)) {
+                        size = $window.innerWidth - elementMargin;
+                    }
+
+                    // Construct style string and apply to element
+                    var styleString = 'width: ' + size + 'px; '
+                        + 'height: ' + size + 'px; '
+                        + 'top: ' + (($window.innerHeight / 2) - (size / 2) - (elementMargin * 1.5)) + 'px;'
+                    a.$set('style', styleString);
+                }
+
+                // Invoke the resize initially and watch for window size changes
+                resize();
+                angular.element($window).bind('resize', function () {
+                    resize();
+                });
+
             }
         };
-    });
+    }]);
