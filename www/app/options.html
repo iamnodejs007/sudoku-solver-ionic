@@ -1,0 +1,38 @@
+<ion-modal-view ng-controller="OptionsController">
+    <ion-header-bar class="bar bar-positive">
+        <h1 class="title">Options</h1>
+        <button class="button button-clear" ng-click="cancel()">
+            <i class="icon ion-ios-close-empty"></i>
+            &nbsp;
+        </button>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+
+            <!-- Puzzle selection -->
+            <div class="item item-divider">
+                Puzzles
+            </div>
+            <ion-item ng-repeat="p in puzzles" ng-click="selectPuzzle(p); cancel()">
+                {{p.name}}
+            </ion-item>
+
+            <!-- Toggle for web workers -->
+            <div class="item item-divider">
+                Performance
+            </div>
+            <ul class="list">
+                <li class="item item-toggle">
+                    Use Web Workers
+                    <label class="toggle toggle-positive">
+                        <input type="checkbox" ng-model="useWebWorkers">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+            </ul>
+
+        </ion-list>
+    </ion-content>
+</ion-modal-view>

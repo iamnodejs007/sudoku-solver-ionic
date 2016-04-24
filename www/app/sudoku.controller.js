@@ -5,8 +5,8 @@ angular.module('SudokuSolver')
       // Reference to the puzzle selection modal
       var modal;
 
-      // Select the first puzzle by default
-      $scope.puzzle = puzzleFactory[1];
+      // Select the first puzzle by default (deep copy)
+      $scope.puzzle = angular.copy(puzzleFactory[0]);
 
       // Hook up solve button to the services solve method
       // Initialize the service with the puzzle to solve
@@ -34,6 +34,11 @@ angular.module('SudokuSolver')
         modal.show();
       };
 
+      // Wire up to puzzle changes (deep copy)
+      $scope.$on('selectedPuzzleChanged', function (event, data) {
+        $scope.puzzle = angular.copy(data);
+      });
+
       // Cleanup
       $scope.$on('$destroy', function () {
         modal.remove();
@@ -41,17 +46,12 @@ angular.module('SudokuSolver')
 
       // Create the puzzle selection modals isolate scope
       var modalScope = $scope.$new(true);
-      modalScope.puzzles = puzzleFactory;
       modalScope.cancel = function () {
-        modal.hide();
-      };
-      modalScope.selectPuzzle = function (puzzle) {
-        $scope.puzzle = puzzle;
         modal.hide();
       };
 
       // Create the puzzle selection modal
-      $ionicModal.fromTemplateUrl('app/puzzle-selection.html',
+      $ionicModal.fromTemplateUrl('app/options.html',
         function ($ionicModal) {
           modal = $ionicModal;
         }, {
