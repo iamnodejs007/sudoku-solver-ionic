@@ -6,10 +6,11 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var jasmine = require('gulp-jasmine');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  js = {
+  js: {
     src: [
       'app/app.js',
       'app/services/**/*.*',
@@ -48,6 +49,11 @@ gulp.task('install', ['git-check'], function () {
     .on('log', function (data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
+});
+
+gulp.task('unit-tests', function () {
+  gulp.src('tests/**/*.js')
+    .pipe(jasmine());
 });
 
 gulp.task('git-check', function (done) {
