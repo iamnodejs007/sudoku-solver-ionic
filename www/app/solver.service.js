@@ -1,5 +1,5 @@
 angular.module('SudokuSolver')
-    .service('SudokuService', ['IteratorsConstant',
+    .service('SolverService', ['IteratorsConstant',
         function (iterators) {
 
             var _this = this;

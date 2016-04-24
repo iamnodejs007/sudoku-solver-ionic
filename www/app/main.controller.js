@@ -1,6 +1,6 @@
 angular.module('SudokuSolver')
-  .controller('SudokuController', ['$scope', '$timeout', '$ionicModal', 'SudokuService', 'PuzzleFactory', 'IteratorsConstant', 'OptionsService',
-    function ($scope, $timeout, $ionicModal, sudokuService, puzzleFactory, iteratorsConst, optionsService) {
+  .controller('MainController', ['$scope', '$timeout', '$ionicModal', 'SolverService', 'PuzzleFactory', 'IteratorsConstant', 'OptionsService',
+    function ($scope, $timeout, $ionicModal, solverService, puzzleFactory, iteratorsConst, optionsService) {
 
       /**
        * Select the first puzzle by default (deep copy) 
@@ -8,20 +8,20 @@ angular.module('SudokuSolver')
       $scope.puzzle = angular.copy(puzzleFactory[0]);
 
       /**
-       * Hook up solve button to the services solve method
-       * Initialize the service with the puzzle to solve
+       * Hook up solve button to the services solve method.
+       * Initialize the service with the puzzle to solve.
+       * Executed using a blocking angular service or a web worker.
        */
       $scope.solve = function () {
         // Use web workers
-        debugger;
         if (typeof (Worker) !== 'undefined' && optionsService.useWebWorker()) {
           startWebWorkerSolver();
         }
         // Use the service (blocking calculation)
         else {
           console.time('Sudoku puzzle solved in');
-          sudokuService.initialize($scope.puzzle.data);
-          sudokuService.solve(0);
+          solverService.initialize($scope.puzzle.data);
+          solverService.solve(0);
           console.timeEnd('Sudoku puzzle solved in');
         }
       };
