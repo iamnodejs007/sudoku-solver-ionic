@@ -25,7 +25,7 @@
                 <li class="item item-toggle">
                     Use Web Workers
                     <label class="toggle toggle-positive">
-                        <input type="checkbox" ng-model="useWebWorkers">
+                        <input type="checkbox" ng-model="_useWebWorkers" ng-change="webWorkerToggleUpdate(_useWebWorkers)">
                         <div class="track">
                             <div class="handle"></div>
                         </div>

@@ -1,13 +1,15 @@
 self.addEventListener('message', function (e) {
-    var s = new Solver(e.data.iterators, progress);
 
-    function progress() {
+    var progressFunc = function () {
         self.postMessage(s.puzzle);
-    }
+    };
 
+    var s = new Solver(e.data.iterators, progressFunc);
     s.initialize(e.data.puzzleData);
     s.solve(0);
-    self.postMessage(s.puzzle);
+
+    progressFunc();
+
 }, false);
 
 var Solver = function (iterators, progressCallback) {
