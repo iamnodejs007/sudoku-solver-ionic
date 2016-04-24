@@ -3,7 +3,7 @@ angular.module('SudokuSolver')
 
         return [
             {
-                name: 'Default (Easy)',
+                name: 'Default',
                 data: [
                     8, 5, 6, 0, 1, 4, 7, 3, 0,
                     0, 9, 0, 0, 0, 0, 0, 0, 0,
@@ -16,7 +16,7 @@ angular.module('SudokuSolver')
                     0, 1, 8, 6, 3, 0, 2, 9, 4
                 ]
             }, {
-                name: 'Sample (Medium)',
+                name: 'Medium Example',
                 data: [
                     4, 0, 3, 0, 0, 0, 0, 0, 0,
                     9, 0, 0, 4, 0, 2, 6, 0, 0,
@@ -29,7 +29,7 @@ angular.module('SudokuSolver')
                     0, 9, 0, 5, 0, 0, 3, 0, 4
                 ]
             }, {
-                name: 'Sample (Hard)',
+                name: 'Hard Example',
                 data: [
                     8, 0, 0, 7, 5, 0, 0, 0, 4,
                     0, 0, 0, 1, 0, 0, 0, 0, 0,
@@ -40,6 +40,19 @@ angular.module('SudokuSolver')
                     0, 0, 0, 9, 0, 2, 0, 6, 1,
                     0, 0, 0, 0, 0, 3, 0, 0, 0,
                     0, 0, 0, 0, 6, 1, 0, 0, 5
+                ]
+            }, {
+                name: 'Norvig (~30 sec)',
+                data: [
+                    4, 0, 0, 0, 0, 0, 8, 0, 5,
+                    0, 3, 0, 0, 0, 0, 0, 0, 0,
+                    0, 0, 0, 7, 0, 0, 0, 0, 0,
+                    0, 2, 0, 0, 0, 0, 0, 6, 0,
+                    0, 0, 0, 0, 8, 0, 4, 0, 0,
+                    0, 0, 0, 0, 1, 0, 0, 0, 0,
+                    0, 0, 0, 6, 0, 3, 0, 7, 0,
+                    5, 0, 0, 2, 0, 0, 0, 0, 0,
+                    1, 0, 4, 0, 0, 0, 0, 0, 0
                 ]
             }
         ];

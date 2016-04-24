@@ -59,7 +59,7 @@ angular.module('SudokuSolver')
       /**
        * Create the options modal
        */
-      $ionicModal.fromTemplateUrl('app/options.html', function ($ionicModal) {
+      $ionicModal.fromTemplateUrl('app/options/options.html', function ($ionicModal) {
         modal = $ionicModal;
       }, { scope: modalScope });
 
@@ -68,7 +68,7 @@ angular.module('SudokuSolver')
        */
       var startWebWorkerSolver = function () {
         // New worker from file
-        var worker = new Worker('app/solver.worker.js');
+        var worker = new Worker('app/solver/solver.worker.js');
 
         // Receive updates from worker and update puzzle binding
         worker.addEventListener('message', function (e) {

@@ -136,12 +136,10 @@ angular.module('SudokuSolver')
 
                 // Check if initialized
                 if (!_this.puzzle) {
-                    throw 'Please call initialize(...) with the puzzle data before solving.';
+                    throw new Error();
                 }
 
                 if (debug) level++;
-
-                if (level === 20) return gridIndex;
 
                 // Iterate through the puzzle to find the next cell without a value
                 var nextEmptyGridIndex = getIndexOfNextEmptyGridCell(gridIndex);

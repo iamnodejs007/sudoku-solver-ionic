@@ -7,6 +7,7 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var jasmine = require('gulp-jasmine');
+var karma = require('karma');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
@@ -27,6 +28,9 @@ var paths = {
 
 gulp.task('default', ['sass']);
 
+/**
+ * Compile sass and concatenate css
+ */
 gulp.task('sass', function (done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
@@ -44,6 +48,31 @@ gulp.task('watch', function () {
   gulp.watch(paths.sass, ['sass']);
 });
 
+/*
+ * Run unit tests once
+ */
+gulp.task('unit-tests', function () {
+  return new karma.Server({
+    configFile: __dirname + '/karma.conf.js',
+    autoWatch: false,
+    singleRun: true
+  }).start();
+});
+
+/*
+ * Run unit tests and watch for file changes
+ */
+gulp.task('unit-tests-watch', function () {
+  return new karma.Server({
+    configFile: __dirname + '/karma.conf.js',
+    autoWatch: true,
+    singleRun: false
+  }).start();
+});
+
+/**
+ * Install bower packages
+ */
 gulp.task('install', ['git-check'], function () {
   return bower.commands.install()
     .on('log', function (data) {
@@ -51,11 +80,9 @@ gulp.task('install', ['git-check'], function () {
     });
 });
 
-gulp.task('unit-tests', function () {
-  gulp.src('tests/**/*.js')
-    .pipe(jasmine());
-});
-
+/**
+ * Check if git is installed
+ */
 gulp.task('git-check', function (done) {
   if (!sh.which('git')) {
     console.log(
