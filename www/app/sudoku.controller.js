@@ -1,6 +1,6 @@
 angular.module('SudokuSolver')
-  .controller('SudokuController', ['$scope', '$ionicModal', 'SudokuService', 'PuzzleFactory',
-    function ($scope, $ionicModal, sudokuService, puzzleFactory) {
+  .controller('SudokuController', ['$scope', '$timeout', '$ionicModal', 'SudokuService', 'PuzzleFactory', 'IteratorsConstant',
+    function ($scope, $timeout, $ionicModal, sudokuService, puzzleFactory, iteratorsConst) {
 
       // Reference to the puzzle selection modal
       var modal;
@@ -11,10 +11,22 @@ angular.module('SudokuSolver')
       // Hook up solve button to the services solve method
       // Initialize the service with the puzzle to solve
       $scope.solve = function () {
-        console.time('Sudoku puzzle solved in');
-        sudokuService.initialize($scope.puzzle.data);
-        sudokuService.solve(0);
-        console.timeEnd('Sudoku puzzle solved in');
+
+        if (typeof (Worker) !== 'undefined') {
+          var worker = new Worker('app/solver.worker.js');
+          worker.addEventListener('message', function (e) {
+            $timeout(function () {
+              $scope.puzzle.data = e.data;
+            });
+          }, false);
+          worker.postMessage({ puzzleData: $scope.puzzle.data, iterators: iteratorsConst });
+        } else {
+          console.time('Sudoku puzzle solved in');
+          sudokuService.initialize($scope.puzzle.data);
+          sudokuService.solve(0);
+          console.timeEnd('Sudoku puzzle solved in');
+        }
+
       };
 
       // Pops up a puzzle selection modal

@@ -8,14 +8,9 @@ angular.module('SudokuSolver')
                     puzzle: '='
                 },
                 controller: ['$scope', function ($scope) {
-                    $scope.$watch('puzzle', function(){
                     $scope.originalPuzzle = angular.copy($scope.puzzle);
-                        
-                    });
-
                 }],
                 link: function (s, e, a) {
-
                     // Resize the element to fit within the window with a 1:1 aspect ratio.
                     // TODO - Vertically center with offeset for the solve button
                     // resize = function () {

@@ -44,7 +44,7 @@ body {
 }
 
 .game-cell-digit {
-    transition: opacity 1s ease;
+    /*transition: opacity 1s ease;*/
     line-height: 1px;
 }
 

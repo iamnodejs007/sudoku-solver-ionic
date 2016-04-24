@@ -141,6 +141,8 @@ angular.module('SudokuSolver')
 
                 if (debug) level++;
 
+                if (level === 20) return gridIndex;
+
                 // Iterate through the puzzle to find the next cell without a value
                 var nextEmptyGridIndex = getIndexOfNextEmptyGridCell(gridIndex);
 
@@ -162,20 +164,21 @@ angular.module('SudokuSolver')
                     // Debug
                     if (debug) {
                         var localLevel = level;
-                        if (debug) console.log('Attempt candidate', candidates[i],
-                            '- Grid index', gridIndex, '- Level =', level);
+                        if (debug) console.log('Level', level, '- Grid index', nextEmptyGridIndex,
+                            '- Attempt candidate', candidates[i], 'from list', candidates);
                         // this.displayBoard();
                     }
 
                     // Attempt to solve
-                    if (this.solve(nextEmptyGridIndex)) {
-                        return true;
+                    var t = this.solve(nextEmptyGridIndex);
+                    if (t) {
+                        return t;
                     }
 
                     // Debug
                     if (debug) {
-                        console.log('Undo candidate', _this.puzzle[nextEmptyGridIndex],
-                            '- Grid index', gridIndex, '- Level', localLevel)
+                        console.log('Level', localLevel, '- Grid index', nextEmptyGridIndex,
+                            '- Undo candidate', _this.puzzle[nextEmptyGridIndex])
                     }
 
                     // Solve didn't work... undo the values we've tried                    
