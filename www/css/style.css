@@ -4,7 +4,7 @@ body {
 }
 
 .pane {
-    background: #F1F1F1;
+    background: #DAE6ED;
 }
 
 /*.bar-balanced,
@@ -29,28 +29,34 @@ body {
 .game {
     background: #FFF;
     position: relative;
-    overflow: auto;
+    overflow: hidden;
     margin: auto;
-    border: 2px solid #AAA;
-    border-radius: 2px;
+    box-shadow: 0 0 50px #BAC4CC;
+    border-radius: 5px;
 }
 
 /* Grid cell base style */
 .game-cell {
     width: 11.1111111%;
     height: 11.2111111%;
-    border-left: 1px solid #DDD;
-    border-bottom: 1px solid #DDD;
+    border-left: 1px solid #EEF4F7;
+    border-bottom: 1px solid #EEF4F7;
     float: left;
-    padding: 1.8vmin 0;
-    text-align: center;
-    color: #666;
     box-sizing: border-box;
+    position: relative;
 }
 
 .game-cell-digit {
-    /*transition: opacity 1s ease;*/
-    line-height: 1px;
+    transition: opacity 500ms ease;
+    font-size: 4vmin;
+    font-weight: 300;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #738594;
+    /*background: red;*/
 }
 
 .game-cell .new-value {
@@ -76,13 +82,13 @@ body {
 /* Middle horizontal thick lines */
 .game-cell:nth-child(n+19):nth-child(-n+27),
 .game-cell:nth-child(n+46):nth-child(-n+54) {
-    border-bottom: 2px solid #AAA;
+    border-bottom: 1vmin solid #DAE6ED;
 }
 
 /* Middle vertical thick lines */
 .game-cell:nth-child(9n + 4),
 .game-cell:nth-child(9n + 7) {
-    border-left:  2px solid #AAA;
+    border-left:  1vmin solid #DAE6ED;
 }
 
 /* Container for the solve button */

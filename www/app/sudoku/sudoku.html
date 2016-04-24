@@ -2,7 +2,7 @@
     <div class="game" auto-size>
         <div class="game-cell" ng-repeat="d in puzzle track by $index">
             <!--<span class="game-cell-digit" ng-style="{&apos;opacity&apos;: d &gt; 0 ? 1 : 0}" ng-class="{&apos;new-value&apos;: d !== originalPuzzle[$index]}">-->
-            <span class="game-cell-digit" ng-style="{&apos;opacity&apos;: d &gt; 0 ? 1 : 0}">
+            <div class="game-cell-digit" ng-style="{&apos;opacity&apos;: d &gt; 0 ? 1 : 0}">
             {{d}}
         </span>
         </div>
