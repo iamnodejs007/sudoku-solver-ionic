@@ -4,7 +4,18 @@ body {
 }
 
 .pane {
-    background: #DAE6ED;
+    background: #DDD;
+}
+
+.bar-balanced,
+.button-balanced {
+    background: #60a628 !important;
+    border-color: #469d00 !important;
+}
+
+.toggle.toggle-balanced input:checked + .track {
+  border-color: #60a628;
+  background-color: #60a628; 
 }
 
 .popup {
@@ -33,7 +44,7 @@ body {
     position: relative;
     overflow: hidden;
     margin: auto;
-    box-shadow: 0 0 100px #AAC4CC;
+    box-shadow: 0 0 100px #999;
     border-radius: 5px;
 }
 
@@ -41,8 +52,8 @@ body {
 .game-cell {
     width: 11.1111111%;
     height: 11.2111111%;
-    border-left: 1px solid #EEF4F7;
-    border-bottom: 1px solid #EEF4F7;
+    border-left: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
     float: left;
     box-sizing: border-box;
     position: relative;
@@ -57,13 +68,8 @@ body {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    color: #738594;
+    color: #666;
     /*background: red;*/
-}
-
-.game-cell .new-value {
-    color: #387ef5;
-    font-weight: bold;
 }
 
 /* Cells in last row */
@@ -84,13 +90,13 @@ body {
 /* Middle horizontal thick lines */
 .game-cell:nth-child(n+19):nth-child(-n+27),
 .game-cell:nth-child(n+46):nth-child(-n+54) {
-    border-bottom: 1vmin solid #DAE6ED;
+    border-bottom: 1vmin solid #CCC;
 }
 
 /* Middle vertical thick lines */
 .game-cell:nth-child(9n + 4),
 .game-cell:nth-child(9n + 7) {
-    border-left:  1vmin solid #DAE6ED;
+    border-left:  1vmin solid #CCC;
 }
 
 /* Container for the solve button */

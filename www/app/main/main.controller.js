@@ -33,7 +33,7 @@ angular.module('SudokuSolver')
             solverService.solve();
             console.timeEnd('Sudoku puzzle solved in');
           } catch (e) {
-            $ionicPopup.alert({ title: 'Oh no!', template: e.message });
+            $ionicPopup.alert({ title: 'Oh no!', template: e.message, okType: 'button-balanced' });
           }
         }
       };

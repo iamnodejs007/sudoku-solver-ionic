@@ -1,5 +1,5 @@
 <ion-modal-view ng-controller="OptionsController">
-    <ion-header-bar class="bar bar-positive">
+    <ion-header-bar class="bar bar-balanced">
         <h1 class="title">Options</h1>
         <button class="button button-clear" ng-click="cancel()">
             <i class="icon ion-ios-close-empty"></i>
@@ -24,7 +24,7 @@
             <ul class="list">
                 <li class="item item-toggle">
                     Slow Motion
-                    <label class="toggle toggle-positive">
+                    <label class="toggle toggle-balanced">
                         <input type="checkbox" ng-model="_useWebWorkers" ng-change="webWorkerToggleUpdate(_useWebWorkers)">
                         <div class="track">
                             <div class="handle"></div>
