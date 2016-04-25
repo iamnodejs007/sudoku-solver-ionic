@@ -1,6 +1,6 @@
 # Sudoku Solver
 
-An hybrid-mobile app that solves sudoku puzzles.
+A hybrid-mobile app that solves sudoku puzzles. The algorithm uses a recursive approach, which determines all candidates for an empty grid cell, places a candidate in that cell, and repeats for following cells until a cell is unsolvable (there are no valid candidates left for the empty grid cell). At this stage, the recursive function returns up the call stack (backtracking) and attempts another candidate for the previous cells.
 
 ## Install dependencies
 
