@@ -1,3 +1,11 @@
+/** 
+ * EXPERIMENTAL
+ * 
+ * The code here is copied from the solver.service.js angular service.
+ * My goal was to experiment with Web Workers to try and update the UI
+ * in real-time as the puzzle was being solved.
+ * */
+
 self.addEventListener('message', function (e) {
 
     var progressFunc = function () {
@@ -102,31 +110,6 @@ var Solver = function (iterators, progressCallback) {
     }
 
     /**
-     * Display a text representation of the sudoku puzzle in the console
-     */
-    this.displayBoard = function () {
-        var str = '';
-        var j = 0;
-
-        for (var i = 0; i < _this.puzzle.length; i++) {
-            if (j != 0 && j % 3 == 0) {
-                str += ' | '
-            }
-            str += ' ' + (_this.puzzle[i] ? _this.puzzle[i] : ' ') + ' ';
-            if (i == 27 || i == 54) {
-                console.log('----------+-----------+----------')
-            }
-            if (j == 8) {
-                console.log(str);
-                str = '';
-                j = 0;
-            } else {
-                j++
-            }
-        }
-    }
-
-    /**
      * Initialize the solver with a puzzle.
      * @param {int[]} puzzle - An array of 81 integers representing a sudoku puzzle.
      *                         `0` represents an empty or unsolved cell
@@ -182,7 +165,6 @@ var Solver = function (iterators, progressCallback) {
                 var localLevel = level;
                 if (debug) console.log('Level', level, '- Grid index', nextEmptyGridIndex,
                     '- Attempt candidate', candidates[i], 'from list', candidates);
-                // this.displayBoard();
             }
 
             // Attempt to solve

@@ -1,6 +1,6 @@
 angular.module('SudokuSolver')
-  .controller('MainController', ['$scope', '$timeout', '$ionicModal', 'SolverService', 'PuzzleFactory', 'IteratorsConstant', 'OptionsService',
-    function ($scope, $timeout, $ionicModal, solverService, puzzleFactory, iteratorsConst, optionsService) {
+  .controller('MainController', ['$scope', '$timeout', '$ionicModal', '$ionicPopup', 'SolverService', 'PuzzleFactory', 'IteratorsConstant', 'OptionsService',
+    function ($scope, $timeout, $ionicModal, $ionicPopup, solverService, puzzleFactory, iteratorsConst, optionsService) {
 
       /**
        * Select the first puzzle by default (deep copy) 
@@ -13,16 +13,18 @@ angular.module('SudokuSolver')
        * Executed using a blocking angular service or a web worker.
        */
       $scope.solve = function () {
-        // Use web workers
         if (typeof (Worker) !== 'undefined' && optionsService.useWebWorker()) {
           startWebWorkerSolver();
         }
-        // Use the service (blocking calculation)
         else {
-          console.time('Sudoku puzzle solved in');
-          solverService.initialize($scope.puzzle.data);
-          solverService.solve(0);
-          console.timeEnd('Sudoku puzzle solved in');
+          try {
+            console.time('Sudoku puzzle solved in');
+            solverService.initialize($scope.puzzle.data);
+            solverService.solve(0);
+            console.timeEnd('Sudoku puzzle solved in');
+          } catch (e) {
+            $ionicPopup.alert({ title: 'Oh no!', template: e.message });
+          }
         }
       };
 

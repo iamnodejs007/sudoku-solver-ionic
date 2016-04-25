@@ -90,37 +90,74 @@ angular.module('SudokuSolver')
             }
 
             /**
-             * Display a text representation of the sudoku puzzle in the console
+             * Determines if the puzzle has a valid format
+             * i.e. no duplicate numbers in any row, column, or box any values are in range
+             * @param {int[]} - The sudoku puzzle structure
+             * @returns {boolean} - True if puzzle has a valid format
              */
-            this.displayBoard = function () {
-                var str = '';
-                var j = 0;
+            function isPuzzleValid(puzzle) {
 
+                // Intial scan of whole puzzle to check if values between 0 and 9
                 for (var i = 0; i < _this.puzzle.length; i++) {
-                    if (j != 0 && j % 3 == 0) {
-                        str += ' | '
-                    }
-                    str += ' ' + (_this.puzzle[i] ? _this.puzzle[i] : ' ') + ' ';
-                    if (i == 27 || i == 54) {
-                        console.log('----------+-----------+----------')
-                    }
-                    if (j == 8) {
-                        console.log(str);
-                        str = '';
-                        j = 0;
-                    } else {
-                        j++
+                    if (puzzle[i] < 0 || puzzle[i] > 9) {
+                        return false;
                     }
                 }
-            }
+
+                // Check the tracker structure and see if a digit occurred more than once
+                var hasDuplicates = function (localTracker) {
+                    for (var j = 0; j < 9; j++) {
+                        if (localTracker[j] > 1) {
+                            return true;
+                        }
+                    }
+                    return false;
+                };
+
+                // Check for any duplicates in rows, columns, or boxes by counting
+                // the occurence of each value
+                var tracker = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 };
+                for (var i = 0; i < 9; i++) {
+
+                    var localTracker = angular.copy(tracker);
+                    iterators.rows[i].forEach(function (r) {
+                        localTracker[puzzle[r]]++;
+                    });
+                    if (hasDuplicates(localTracker)) {
+                        return false;
+                    }
+
+                    localTracker = angular.copy(tracker);
+                    iterators.columns[i].forEach(function (c) {
+                        localTracker[puzzle[c]]++;
+                    });
+                    if (hasDuplicates(localTracker)) {
+                        return false;
+                    }
+
+                    localTracker = angular.copy(tracker);
+                    iterators.boxes[i].forEach(function (b) {
+                        localTracker[puzzle[b]]++;
+                    });
+                    if (hasDuplicates(localTracker)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            };
 
             /**
              * Initialize the solver with a puzzle.
-             * @param {int[]} puzzle - An array of 81 integers representing a sudoku puzzle.
-             *                         `0` represents an empty or unsolved cell
+             * @param {int[]} puzzle - An array of 81 integers representing a sudoku puzzle.             *                         `0` represents an empty or unsolved cell
+             * @throw Throws an error is the puzzle is not a valid format
              */
             this.initialize = function (puzzle) {
                 _this.puzzle = puzzle;
+
+                if (!isPuzzleValid(puzzle)) {
+                    throw new Error('It looks like that puzzle isn\'t valid :-(');
+                }
             };
 
             /**
@@ -136,7 +173,7 @@ angular.module('SudokuSolver')
 
                 // Check if initialized
                 if (!_this.puzzle) {
-                    throw new Error();
+                    throw new Error('Please initialize the solver with a puzzle');
                 }
 
                 if (debug) level++;
@@ -164,7 +201,6 @@ angular.module('SudokuSolver')
                         var localLevel = level;
                         if (debug) console.log('Level', level, '- Grid index', nextEmptyGridIndex,
                             '- Attempt candidate', candidates[i], 'from list', candidates);
-                        // this.displayBoard();
                     }
 
                     // Attempt to solve
