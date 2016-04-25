@@ -1,4 +1,6 @@
-// Main app definition and ionic initialization
+/**
+ * @author Shaun Fowler <shaun.fowler@gmail.com>
+ */
 angular.module('SudokuSolver', ['ionic'])
   .run(['$ionicPlatform',
     function ($ionicPlatform) {

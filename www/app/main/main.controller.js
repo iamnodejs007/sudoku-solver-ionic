@@ -1,14 +1,22 @@
+/**
+ * Main interaction logic for the UI
+ * @class MainController
+ */
 angular.module('SudokuSolver')
   .controller('MainController', ['$scope', '$timeout', '$ionicModal', '$ionicPopup', 'SolverService', 'PuzzleFactory', 'IteratorsConstant', 'OptionsService',
     function ($scope, $timeout, $ionicModal, $ionicPopup, solverService, puzzleFactory, iteratorsConst, optionsService) {
 
-      /**
-       * Select the first puzzle by default (deep copy) 
+      /** 
+       * @memberof MainController
+       * @type puzzle
+       * @description The puzzle data structure for binding to in the view
        */
       $scope.puzzle = angular.copy(puzzleFactory[0]);
 
-      /**
-       * Hook up solve button to the services solve method.
+      /** 
+       * @function
+       * @memberof MainController
+       * @description Hook up solve button to the services solve method.
        * Initialize the service with the puzzle to solve.
        * Executed using a blocking angular service or a web worker.
        */
@@ -27,8 +35,10 @@ angular.module('SudokuSolver')
         }
       };
 
-      /**
-       * Pops up a puzzle selection modal
+      /** 
+       * @function
+       * @memberof MainController
+       * @description Pops up a puzzle selection modal
        */
       $scope.selectPuzzle = function () {
         modal.show();

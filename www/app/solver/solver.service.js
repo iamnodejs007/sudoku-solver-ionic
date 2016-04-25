@@ -1,3 +1,7 @@
+/**
+ * The solver service is responsible for solving the sudoku puzzle.
+ * @class SolverService
+ */
 angular.module('SudokuSolver')
     .service('SolverService', ['IteratorsConstant',
         function (iterators) {
@@ -14,9 +18,10 @@ angular.module('SudokuSolver')
              */
             var level = -1;
 
-            /**
-             * Expose the puzzle structure to the outside world
-             * Can be used for binding the controller
+            /** 
+             * @memberOf SolverService
+             * @type puzzle
+             * @description The puzzle data structure. Can be used for binding a controller
              */
             this.puzzle = null;
 
@@ -147,9 +152,10 @@ angular.module('SudokuSolver')
                 return true;
             };
 
-            /**
-             * Initialize the solver with a puzzle.
-             * @param {int[]} puzzle - An array of 81 integers representing a sudoku puzzle.             *                         `0` represents an empty or unsolved cell
+            /** @function
+             * @memberOf SolverService
+             * @description Initialize the solver with a puzzle.
+             * @param {int[]} puzzle - An array of 81 integers representing a sudoku puzzle. 0 represents an empty or unsolved cell
              * @throw Throws an error is the puzzle is not a valid format
              */
             this.initialize = function (puzzle) {
@@ -160,8 +166,9 @@ angular.module('SudokuSolver')
                 }
             };
 
-            /**
-             * Solve the puzzle
+            /** @function
+             * @memberOf SolverService
+             * @description Solve the puzzle
              *  - narrows down any possible candidates for empty cells
              *  - attempts each candidate until puzzle can be solved further
              *  - if puzzle cannot be solved with a chosen candidate, 

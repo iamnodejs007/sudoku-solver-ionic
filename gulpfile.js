@@ -1,3 +1,4 @@
+var fs = require('fs');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var bower = require('bower');
@@ -8,22 +9,10 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 var jasmine = require('gulp-jasmine');
 var karma = require('karma');
+var jsdoc = require('gulp-jsdoc3');
 
 var paths = {
-  sass: ['./scss/**/*.scss'],
-  js: {
-    src: [
-      'app/app.js',
-      'app/services/**/*.*',
-      'app/directives.js',
-      'app/filters.js',
-      'app/controllers/**/*.*',
-    ],
-    dest: {
-      dir: 'app/',
-      filename: 'all.js'
-    }
-  }
+  sass: ['./scss/**/*.scss']
 };
 
 gulp.task('default', ['sass']);
@@ -69,6 +58,39 @@ gulp.task('unit-tests-watch', function () {
     singleRun: false
   }).start();
 });
+
+/**
+ * Generate Markdown docs from JSDoc
+ */
+gulp.task('docs', function () {
+  return gulp.src(['./README.md', "./www/app/**/*.js", '!./www/app/solver/solver.worker.js'])
+    .pipe(jsdoc({
+      "tags": {
+        "allowUnknownTags": true
+      },
+      "source": {
+        "excludePattern": "(^|\\/|\\\\)_"
+      },
+      "opts": {
+        "destination": "./docs/gen"
+      },
+      "plugins": [
+        // "plugins/markdown"
+      ],
+      "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "default": {
+          "outputSourceFiles": false
+        },
+        "path": "ink-docstrap",
+        "theme": "cerulean",
+        "navType": "vertical",
+        "linenums": true,
+        "dateFormat": "MMMM Do YYYY, h:mm:ss a"
+      }
+    }))
+})
 
 /**
  * Install bower packages
