@@ -3,15 +3,15 @@
  * @class MainController
  */
 angular.module('SudokuSolver')
-  .controller('MainController', ['$scope', '$timeout', '$ionicModal', '$ionicPopup', 'SolverService', 'PuzzleFactory', 'IteratorsConstant', 'OptionsService',
-    function ($scope, $timeout, $ionicModal, $ionicPopup, solverService, puzzleFactory, iteratorsConst, optionsService) {
+  .controller('MainController', ['$scope', '$timeout', '$ionicModal', '$ionicPopup', 'SolverService', 'Puzzles', 'IteratorsConstant', 'OptionsService',
+    function ($scope, $timeout, $ionicModal, $ionicPopup, solverService, puzzles, iteratorsConst, optionsService) {
 
       /** 
        * @memberof MainController
        * @type puzzle
        * @description The puzzle data structure for binding to in the view
        */
-      $scope.puzzle = angular.copy(puzzleFactory[0]);
+      $scope.puzzle = angular.copy(puzzles[0]);
 
       /** 
        * @function

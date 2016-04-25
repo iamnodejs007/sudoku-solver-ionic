@@ -7,11 +7,13 @@ body {
     background: #DAE6ED;
 }
 
-/*.bar-balanced,
-.button-balanced {
-    background: #60a628 !important;
-    border-color: #469d00 !important;
-}*/
+.popup {
+    border-radius: 4px !important;
+}
+
+.popup-body {
+    text-align: center;
+}
 
 /* Container for all content */
 .content {

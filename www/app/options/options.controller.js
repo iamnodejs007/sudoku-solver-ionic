@@ -2,15 +2,15 @@
  * @class OptionsController
  */
 angular.module('SudokuSolver')
-    .controller('OptionsController', ['$scope', 'PuzzleFactory', 'OptionsService',
-        function ($scope, puzzleFactory, optionsService) {
+    .controller('OptionsController', ['$scope', 'Puzzles', 'OptionsService',
+        function ($scope, puzzles, optionsService) {
 
             /** 
              * @memberof OptionsController
              * @type puzzle[]
              * @description A list of all configured puzzles
              */
-            $scope.puzzles = puzzleFactory;
+            $scope.puzzles = puzzles;
 
             /** @function
              * @memberOf OptionsController

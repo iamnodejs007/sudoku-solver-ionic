@@ -105,7 +105,7 @@ angular.module('SudokuSolver')
                 _this.puzzle = puzzle;
 
                 if (!validatorService.validate(puzzle)) {
-                    throw new Error('It looks like that puzzle isn\'t valid');
+                    throw new Error('It looks like that puzzle isn\'t valid.');
                 }
             };
 
@@ -123,7 +123,7 @@ angular.module('SudokuSolver')
 
                 // Check if initialized
                 if (!_this.puzzle) {
-                    throw new Error('Please initialize the solver with a puzzle');
+                    throw new Error('Please initialize the solver with a puzzle.');
                 }
 
                 if (!gridIndex) {
