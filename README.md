@@ -53,3 +53,11 @@ To load your own puzzle to solve, open up `./www/app/common/puzzle.factory.js`. 
 ```
 
 ## Screenshots
+
+### Main UI
+
+![alt text](screenshots/main.png "Main UI")
+
+### Options Pane
+
+![alt text](screenshots/options.png "Options Pane")
