@@ -4,6 +4,8 @@ An hybrid-mobile app that solves sudoku puzzles.
 
 ## Install dependencies
 
+Globally install dev tools:
+
 `npm install -g cordova ionic gulp karma`
 
 In the project folder, run:
@@ -16,7 +18,7 @@ To view the app in a web browser:
 
 `ionic serve`
 
-A browser should start and display the app. If not, navigate to http://localhost:8001.
+A browser should start and display the app. If not, navigate to `http://localhost:8100`.
 
 To run on an iOS emulator:
 
