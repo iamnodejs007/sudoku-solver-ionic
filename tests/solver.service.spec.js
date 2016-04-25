@@ -46,7 +46,7 @@ describe("SolverService", function () {
             4, 7, 9, 8, 3, 1, 6, 5, 4, 6, 2, 7, 5, 9, 3, 8, 1, 9, 3, 1, 8, 6,
             2, 4, 5, 7, 7, 8, 5, 3, 4, 1, 9, 2, 6, 6, 2, 4, 1, 9, 8, 5, 7, 3,
             3, 7, 9, 4, 2, 5, 6, 1, 8, 5, 1, 8, 6, 3, 7, 2, 9, 4];
-            
+
         solverService.initialize(unsolved);
         solverService.solve();
         expect(solverService.puzzle).toEqual(solved);
