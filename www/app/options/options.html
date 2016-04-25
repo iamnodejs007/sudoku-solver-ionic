@@ -11,7 +11,7 @@
 
             <!-- Puzzle selection -->
             <div class="item item-divider">
-                Puzzles
+                Puzzle Selection
             </div>
             <ion-item ng-repeat="p in puzzles" ng-click="selectPuzzle(p); cancel()">
                 {{p.name}}
@@ -19,11 +19,11 @@
 
             <!-- Toggle for web workers -->
             <div class="item item-divider">
-                Performance
+                Experimental Features
             </div>
             <ul class="list">
                 <li class="item item-toggle">
-                    Use Web Workers
+                    Slow Motion
                     <label class="toggle toggle-positive">
                         <input type="checkbox" ng-model="_useWebWorkers" ng-change="webWorkerToggleUpdate(_useWebWorkers)">
                         <div class="track">

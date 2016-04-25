@@ -40,7 +40,8 @@ angular.module('SudokuSolver')
              */
             this.validate = function (puzzle) {
 
-                if (!areNumbersInRange(puzzle)) {
+                // Basic checks
+                if (!puzzle || puzzle.length != 81 || !areNumbersInRange(puzzle)) {
                     return false;
                 }
 

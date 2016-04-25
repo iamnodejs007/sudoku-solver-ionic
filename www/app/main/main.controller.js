@@ -21,13 +21,16 @@ angular.module('SudokuSolver')
        * Executed using a blocking angular service or a web worker.
        */
       $scope.solve = function () {
+        // Experimental (this if-statement should really be hidden in the SolverService)
         if (typeof (Worker) !== 'undefined' && optionsService.useWebWorker()) {
-          startWebWorkerSolver(); // experimental
-        } else {
+          startWebWorkerSolver();
+        }
+        // Initialize the solver with the selected puzzle and solve
+        else {
           try {
             console.time('Sudoku puzzle solved in');
             solverService.initialize($scope.puzzle.data);
-            solverService.solve(0);
+            solverService.solve();
             console.timeEnd('Sudoku puzzle solved in');
           } catch (e) {
             $ionicPopup.alert({ title: 'Oh no!', template: e.message });
@@ -79,7 +82,7 @@ angular.module('SudokuSolver')
        */
       var startWebWorkerSolver = function () {
         // New worker from file
-        var worker = new Worker('app/solver/solver.worker.js');
+        var worker = new Worker('app/experimental/solver.worker.js');
 
         // Receive updates from worker and update puzzle binding
         worker.addEventListener('message', function (e) {

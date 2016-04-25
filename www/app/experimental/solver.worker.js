@@ -3,7 +3,8 @@
  * 
  * The code here is copied from the solver.service.js angular service.
  * My goal was to experiment with Web Workers to try and update the UI
- * in real-time as the puzzle was being solved.
+ * in real-time as the puzzle was being solved. There are some spin loops
+ * to simulate a delay between iterations and backtracking.
  * */
 
 self.addEventListener('message', function (e) {
@@ -134,10 +135,17 @@ var Solver = function (iterators, progressCallback) {
             throw 'Please call initialize(...) with the puzzle data before solving.';
         }
 
-        // Update with progress every 20 iterations.
+        // Short delay
+        var a = 0; for (var i = 0; i < 500000000; i++) a++;
+
+        // Update with progress every 20 iterations.  && gridIndex % 20 == 0
         // Doing an update every iteration lags the app pretty badly.
-        if (progressCallback && gridIndex % 20 == 0) {
+        if (progressCallback) {
             progressCallback();
+        }
+
+        if (!gridIndex) {
+            gridIndex = 0;
         }
 
         if (debug) level++;
@@ -179,7 +187,7 @@ var Solver = function (iterators, progressCallback) {
                     '- Undo candidate', _this.puzzle[nextEmptyGridIndex])
             }
 
-            // Solve didn't work... undo the values we've tried                    
+            // Solve didn't work... undo the values we've tried  
             _this.puzzle[nextEmptyGridIndex] = 0;
         }
 

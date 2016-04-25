@@ -126,6 +126,10 @@ angular.module('SudokuSolver')
                     throw new Error('Please initialize the solver with a puzzle');
                 }
 
+                if (!gridIndex) {
+                    gridIndex = 0;
+                }
+
                 if (debug) level++;
 
                 // Iterate through the puzzle to find the next cell without a value
