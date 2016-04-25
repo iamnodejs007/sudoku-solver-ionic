@@ -25,6 +25,7 @@ To run on an iOS emulator:
 
 Wait for the emulator to open.
 
+> To deploy through Xcode, open `./platforms/ios/Sudoku Solver.xcodeproj` and hit the play button.
 
 ## Run the unit tests
 
