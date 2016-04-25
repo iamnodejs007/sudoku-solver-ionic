@@ -14,9 +14,8 @@ angular.module('SudokuSolver')
        */
       $scope.solve = function () {
         if (typeof (Worker) !== 'undefined' && optionsService.useWebWorker()) {
-          startWebWorkerSolver();
-        }
-        else {
+          startWebWorkerSolver(); // experimental
+        } else {
           try {
             console.time('Sudoku puzzle solved in');
             solverService.initialize($scope.puzzle.data);

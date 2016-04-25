@@ -15,26 +15,8 @@
 
   <ion-pane>
 
-    <ion-header-bar class="bar-positive">
-      <h1 class="title">Sudoku Solver</h1>
-      <button class="button button-icon icon ion-ios-gear-outline" ng-click="selectPuzzle()"></button>
-    </ion-header-bar>
-
-    <ion-content scroll="false">
-
-      <!--{{puzzle.name}}-->
-
-      <!-- Sudoku board -->
-      <div sudoku="" puzzle="puzzle.data"></div>
-
-      <!-- Solve button -->
-      <div class="solve-button-container">
-        <div class="button button-positive solve-button" ng-click="solve()">
-          Solve
-        </div>
-      </div>
-
-    </ion-content>
+    <!-- Don't even bother with routes... the whole app is a single view -->
+    <ng-include src="'app/main/main.html'"></ng-include>
 
   </ion-pane>
 

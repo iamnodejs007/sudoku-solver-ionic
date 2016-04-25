@@ -156,7 +156,7 @@ angular.module('SudokuSolver')
                 _this.puzzle = puzzle;
 
                 if (!isPuzzleValid(puzzle)) {
-                    throw new Error('It looks like that puzzle isn\'t valid :-(');
+                    throw new Error('It looks like that puzzle isn\'t valid');
                 }
             };
 
