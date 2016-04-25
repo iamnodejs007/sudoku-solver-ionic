@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Class: OptionsService</title>
+	<title>Documentation Class: ValidatorService</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -70,13 +70,13 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: OptionsService</h1>
+	<h1 class="page-title">Class: ValidatorService</h1>
 <section>
 
 <header>
     
         <h2>
-        OptionsService
+        ValidatorService
         </h2>
         
     
@@ -89,7 +89,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="OptionsService"><span class="type-signature"></span>new OptionsService()</h4>
+    <h4 class="name" id="ValidatorService"><span class="type-signature"></span>new ValidatorService()</h4>
     
     
 </dt>
@@ -97,7 +97,7 @@
 
     
     <div class="description">
-        Stores and allows toggling of options.
+        Utility class that validates a sudoku puzzle.
     </div>
     
 
@@ -185,7 +185,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".this.toggleWebWorker"><span class="type-signature">&lt;static> </span>this.toggleWebWorker(enabled)</h4>
+    <h4 class="name" id=".this.validate"><span class="type-signature">&lt;static> </span>this.validate(puzzle)</h4>
     
     
 </dt>
@@ -193,7 +193,8 @@
 
     
     <div class="description">
-        Enable or disable web workers (experiemental)
+        Determines if the puzzle has a valid format
+i.e. no duplicate numbers in any row, column, or box any values are in range
     </div>
     
 
@@ -228,13 +229,13 @@
 
         <tr>
             
-                <td class="name"><code>enabled</code></td>
+                <td class="name"><code>puzzle</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">Array.&lt;int></span>
 
 
 
@@ -245,7 +246,7 @@
 
             
 
-            <td class="description last">True to enable and false to disable</td>
+            <td class="description last">The sudoku puzzles contents</td>
         </tr>
 
     
@@ -305,89 +306,11 @@
     
 
     
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".this.useWebWorker"><span class="type-signature">&lt;static> </span>this.useWebWorker()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Determine if the app is using web workers
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
     <h5>Returns:</h5>
     
             
 <div class="param-desc">
-    Flag to indicate if web workers are enabled
+    - True if puzzle has a valid format
 </div>
 
 

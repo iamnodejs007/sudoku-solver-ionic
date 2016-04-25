@@ -1,5 +1,5 @@
 /**
- * The solver service is responsible for solving the sudoku puzzle.
+ * Stores and allows toggling of options.
  * @class OptionsService
  */
 angular.module('SudokuSolver')
@@ -7,7 +7,8 @@ angular.module('SudokuSolver')
 
         var webWorkerEnabled = false;
 
-        /** @function
+        /** 
+         * @function
          * @memberOf OptionsService
          * @description Enable or disable web workers (experiemental)
          * @param {boolean} - True to enable and false to disable
@@ -16,7 +17,8 @@ angular.module('SudokuSolver')
             webWorkerEnabled = enabled;
         };
 
-        /** @function
+        /** 
+         * @function
          * @memberOf OptionsService
          * @description Determine if the app is using web workers
          * @returns {boolean} Flag to indicate if web workers are enabled
