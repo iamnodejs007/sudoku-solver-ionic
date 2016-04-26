@@ -45,7 +45,7 @@ By default, a puzzle is loaded into the main view. Tap the 'Solve' button to sol
 
 ## Loading your own puzzle
 
-To load your own puzzle to solve, open up `./www/app/common/puzzle.factory.js`. You can add a data structure in the following format to the array of puzzles:
+To load your own puzzle to solve, open up `./www/app/common/puzzles.value.js`. You can add a data structure in the following format to the array of puzzles:
 
 ```
 {
